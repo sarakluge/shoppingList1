@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { FlatList, StyleSheet, View, Text } from 'react-native';
 import { v4 as uuid_v4 } from "uuid";
+import AddItemInput from './components/AddItemInput';
 import Header from './components/Header';
 import ListItem from './components/ListItem';
 
@@ -18,6 +19,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header title='Shopping list'/>
+      <AddItemInput />
       <FlatList 
         data={items} 
         renderItem={({item}) => <ListItem item={item} />}
