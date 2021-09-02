@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useState } from 'react';
 import { FlatList, StyleSheet, View, Text } from 'react-native';
+import { set } from 'react-native-reanimated';
 import { v4 as uuid_v4 } from "uuid";
 import AddItemInput from './components/AddItemInput';
 import Header from './components/Header';
@@ -10,10 +11,10 @@ import ListItem from './components/ListItem';
 export default function App() {
 
   const [items, setItems] = useState([
-    {id: uuid_v4(), name: 'Tomato'},
-    {id: uuid_v4(), name: 'Milk'},
-    {id: uuid_v4(), name: 'Ham'},
-    {id: uuid_v4(), name: 'Carrot'}
+    {id: uuid_v4(), name: 'Tomato', qty: 1},
+    {id: uuid_v4(), name: 'Milk', qty: 1},
+    {id: uuid_v4(), name: 'Ham', qty: 1},
+    {id: uuid_v4(), name: 'Carrot', qty: 1}
   ]);
 
   const addItem = (item) => {
@@ -26,6 +27,10 @@ export default function App() {
     setItems(oldItems => {
       return oldItems.filter(item => item.id != id);
     });
+  }
+
+  const handleIsDone = (id) => {
+    setItems()
   }
 
   return (

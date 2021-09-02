@@ -1,12 +1,22 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
+import { useState } from 'react';
+import { TouchableOpacity, View, StyleSheet, Text, CheckBox } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const ListItem = ({item, deleteItem}) => {
+
+    const [isDone, setIsDone] = useState(false);
+
     return (
         <TouchableOpacity style={styles.container}>
             <View style={styles.listRow}>
-                <Text style={styles.text}>{item.name}</Text>
+                <View style={styles.leftItems}>
+                    <CheckBox 
+                    style={styles.checkBox}
+                    value={isDone}
+                    onValueChange={setIsDone} />
+                    <Text style={styles.text}>{item.name}</Text>
+                </View>
                 <Icon 
                 name="delete" 
                 size={20} 
@@ -28,6 +38,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+    },
+
+    leftItems: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    checkBox: {
+        height: 20,
+        width: 20,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: '#16827b',
+        borderRadius: 5,
+        marginRight: 15,
     },
 
     text: {
