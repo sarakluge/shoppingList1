@@ -22,13 +22,20 @@ export default function App() {
     });
   };
 
+  const deleteItem = (id) => {
+    setItems(oldItems => {
+      return oldItems.filter(item => item.id != id);
+    });
+  }
+
   return (
     <View style={styles.container}>
       <Header title='Shopping list'/>
       <AddItemInput addItem={addItem} />
       <FlatList 
         data={items} 
-        renderItem={({item}) => <ListItem item={item} />}
+        renderItem={({item}) => 
+        <ListItem item={item} deleteItem={deleteItem} />}
       />
     </View>
   );
