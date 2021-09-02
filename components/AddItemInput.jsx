@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const AddItemInput = () => {
+const AddItemInput = ({addItem}) => {
 
     const [text, setText] = useState("");
 
@@ -14,7 +14,8 @@ const AddItemInput = () => {
             <TextInput style={styles.input} 
             placeholder="Write a item here"
             onChangeText={onChange}></TextInput>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+            onPress={() => addItem(text)}>
                 <Icon name="add" size={20} color="white" />
             </TouchableOpacity>
         </View>

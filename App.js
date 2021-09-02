@@ -16,10 +16,16 @@ export default function App() {
     {id: uuid_v4(), name: 'Carrot'}
   ]);
 
+  const addItem = (item) => {
+    setItems(oldItems =>{
+      return [...oldItems, {id: uuid_v4(), name: item}]
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Header title='Shopping list'/>
-      <AddItemInput />
+      <AddItemInput addItem={addItem} />
       <FlatList 
         data={items} 
         renderItem={({item}) => <ListItem item={item} />}
