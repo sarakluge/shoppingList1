@@ -17,7 +17,7 @@ const styles = StyleSheet.create ({
         backgroundColor: '#16827b'
     },
     text: {
-        fontSize: 25,
+        fontSize: 30,
         textAlign: 'center',
         color: '#ffffff',
     },
