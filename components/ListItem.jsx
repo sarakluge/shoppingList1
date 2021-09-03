@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { TouchableOpacity, View, StyleSheet, Text, CheckBox } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+//import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ListItem = ({item, deleteItem}) => {
+const ListItem = ({item, deleteItem, handleQtyIncrease, handleQtyDecrease}) => {
 
     const [isDone, setIsDone] = useState(false);
 
@@ -17,11 +18,26 @@ const ListItem = ({item, deleteItem}) => {
                     onValueChange={setIsDone} />
                     <Text style={styles.text}>{item.name}</Text>
                 </View>
-                <Icon 
-                name="delete" 
-                size={20} 
-                color="#b8d9d7"
-                onPress={() => deleteItem(item.id)} />
+                <View style={styles.rightItems}>
+                    <View style={styles.qtyContainer}>
+                        <Icon 
+                        name="chevron-left"
+                        size={30}
+                        color="#16827b" 
+                        onPress={() => handleQtyDecrease(item.id)}/>
+                        <Text>{item.qty}</Text>
+                        <Icon 
+                        name="chevron-right"
+                        size={30}
+                        color="#16827b" 
+                        onPress={() => handleQtyIncrease(item.id)}/>
+                    </View>
+                    <Icon 
+                    name="delete-forever" 
+                    size={30} 
+                    color="#b8d9d7"
+                    onPress={() => deleteItem(item.id)} />
+                </View>
             </View>
         </TouchableOpacity>
     );
@@ -43,6 +59,23 @@ const styles = StyleSheet.create({
     leftItems: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+
+    rightItems: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    qtyContainer: {
+        flexDirection: 'row',
+        alignItems:'center',
+        justifyContent: 'space-evenly',
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: '#b8d9d7',
+        borderRadius: 5,
+        width: 70,
+
     },
 
     checkBox: {

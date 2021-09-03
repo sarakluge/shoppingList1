@@ -18,8 +18,8 @@ export default function App() {
   ]);
 
   const addItem = (item) => {
-    setItems(oldItems =>{
-      return [...oldItems, {id: uuid_v4(), name: item}]
+    setItems(prevItems =>{
+      return [...prevItems, {id: uuid_v4(), name: item, qty: 1}]
     });
   };
 
@@ -27,11 +27,36 @@ export default function App() {
     setItems(oldItems => {
       return oldItems.filter(item => item.id != id);
     });
-  }
+  };
 
-  const handleIsDone = (id) => {
-    setItems()
-  }
+  const handleQtyIncrease = (id) => {
+    
+    const index = items.findIndex(item => item.id === id);
+
+    //copy of items
+    var newItems = [...items]
+
+    //Update item qty property.
+    newItems[index].qty = newItems[index].qty + 1
+
+    setItems(newItems);
+  };
+
+  const handleQtyDecrease = (id) => {
+
+    const index = items.findIndex(item => item.id === id);
+
+    //copy of items
+    var newItems = [...items]
+
+    //Update item qty property.
+    if (newItems[index].qty > 1) {
+      newItems[index].qty = newItems[index].qty - 1
+    }
+    
+    setItems(newItems);
+
+  };
 
   return (
     <View style={styles.container}>
@@ -40,7 +65,12 @@ export default function App() {
       <FlatList 
         data={items} 
         renderItem={({item}) => 
-        <ListItem item={item} deleteItem={deleteItem} />}
+        <ListItem 
+          item={item} 
+          deleteItem={deleteItem} 
+          handleQtyIncrease={handleQtyIncrease}
+          handleQtyDecrease={handleQtyDecrease} 
+        />}
       />
     </View>
   );
