@@ -1,8 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useState } from 'react';
-import { FlatList, StyleSheet, View, Text } from 'react-native';
-import { set } from 'react-native-reanimated';
+import { FlatList, StyleSheet, View, SafeAreaView } from 'react-native';
 import { v4 as uuid_v4 } from "uuid";
 import AddItemInput from './components/AddItemInput';
 import Header from './components/Header';
@@ -10,12 +8,7 @@ import ListItem from './components/ListItem';
 
 export default function App() {
 
-  const [items, setItems] = useState([
-    {id: uuid_v4(), name: 'Tomato', qty: 1},
-    {id: uuid_v4(), name: 'Milk', qty: 1},
-    {id: uuid_v4(), name: 'Ham', qty: 1},
-    {id: uuid_v4(), name: 'Carrot', qty: 1}
-  ]);
+  const [items, setItems] = useState([]);
 
   const addItem = (item) => {
     setItems(prevItems =>{
@@ -53,9 +46,8 @@ export default function App() {
     if (newItems[index].qty > 1) {
       newItems[index].qty = newItems[index].qty - 1
     }
-    
-    setItems(newItems);
 
+    setItems(newItems);
   };
 
   return (
@@ -80,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0fffe',
-    paddingTop: 60,
+    //paddingTop: 60,
   },
   text: {
     color: 'blue',

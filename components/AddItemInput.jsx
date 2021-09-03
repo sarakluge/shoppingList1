@@ -11,10 +11,13 @@ const AddItemInput = ({addItem}) => {
 
     return (
         <View style={styles.container}>
-            <TextInput style={styles.input} 
+            <TextInput 
+            style={styles.input} 
             placeholder="Write a item here"
-            onChangeText={onChange}></TextInput>
-            <TouchableOpacity style={styles.button}
+            onChangeText={onChange}>
+            </TextInput>
+            <TouchableOpacity 
+            style={styles.button}
             onPress={() => addItem(text)}>
                 <Icon name="add" size={20} color="white" />
             </TouchableOpacity>
